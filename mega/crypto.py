@@ -95,7 +95,7 @@ def str_to_a32(b):
         b = makebyte(b)
     if len(b) % 4:
         # pad to multiple of 4
-        b += '\0' * (4 - len(b) % 4)
+        b += b'\0' * (4 - len(b) % 4)
     return struct.unpack('>%dI' % (len(b) / 4), b)
 
 

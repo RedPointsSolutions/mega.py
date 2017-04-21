@@ -8,9 +8,6 @@ import unittest
 import random
 import os
 
-email = 'your@email.com'
-password = 'password'
-
 mega = Mega()
 # anonymous login
 m = mega.login()
@@ -27,9 +24,6 @@ TEST_FOLDER = 'mega.py_testfolder_{0}'.format(random.random())
 class TestMega(unittest.TestCase):
 
     def test_mega(self):
-        self.assertIsInstance(mega, Mega)
-
-    def test_login(self):
         self.assertIsInstance(mega, Mega)
 
     def test_get_user(self):
@@ -100,6 +94,28 @@ class TestMega(unittest.TestCase):
     def test_remove_contact(self):
         resp = m.remove_contact(TEST_CONTACT)
         self.assertIsInstance(resp, int)
+
+
+class LoginTests(unittest.TestCase):
+
+    mega = None
+    email = None
+    password = None
+
+    def setUp(self):
+        self.mega = Mega()
+        self.email = os.getenv('MEGA_USER')
+        self.password = os.getenv('MEGA_PASSWORD')
+
+    def test_login__user(self):
+        self.assertIsNone(self.mega.sid)
+        self.mega.login('guigarfr@gmail.com', 'redpoints0')
+        self.assertIsNotNone(self.mega.sid)
+
+    def test_login__anonymous(self):
+        self.assertIsNone(self.mega.sid)
+        self.mega.login()
+        self.assertIsNotNone(self.mega.sid)
 
 
 if __name__ == '__main__':
