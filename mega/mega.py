@@ -124,7 +124,7 @@ class Mega(object):
     def _parse_url(self, url):
         #parse file id and key from url
         if '!' in url:
-            match = re.findall(r'/#!(.*)', url)
+            match = re.findall(r'/\??#!(.*)', url)
             path = match[0]
             return path
 #        else:
