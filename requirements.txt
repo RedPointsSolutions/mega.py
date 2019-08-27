@@ -1,6 +1,6 @@
 future
 requests>=0.10
-pycrypto
+pycryptodome
 pytest
 mega.py
 mock
